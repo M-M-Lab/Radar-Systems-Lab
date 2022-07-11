@@ -11,10 +11,10 @@ def hexificator(bits):
     return ''.join(hexStrings)
 
 def bandwidthConfiguration(BW):
-    start = "!P"
-    stop = "\r\n"
-    val = int(BW/2)
-    bitString = '0000000000000000' + twosComplement(val)
-    fullCommand = start + hexificator(bitString) + stop
-    return fullCommand
-
+    if BW <= 65534 and BW >= -65536:
+        val = int(BW/2)
+        bitString = '0000000000000000' + twosComplement(val)
+        fullCommand = "!P" + hexificator(bitString) + "\r\n"
+        return fullCommand
+    else:
+        raise ValueError("The bandwidth must be a number between -65536 MHz and 65534 MHz.")
