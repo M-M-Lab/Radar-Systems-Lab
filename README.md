@@ -1,4 +1,5 @@
 # Laboratorio-SiliconRadar
+Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 
 ## TO-DO-LIST
  - [x] Conversion from string of bit to string of hex to write the commands
