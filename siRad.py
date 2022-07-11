@@ -1,6 +1,6 @@
 #https://pypi.org/project/pyserial/
 from textwrap import wrap
-import serial
+#import serial
 import math
 
 # ---------- COMMANDS FORMATTING ------------ #
@@ -49,9 +49,27 @@ def selfTrigDelaySetting(delay=0):
     else:
         raise TypeError("The input must be an integer.")
 
+def systemConfiguration():
+    selfTrigDelay = selfTrigDelaySetting()
+    res = '0' # reserved
+    LOG = '1' # linear magnitude
+    FMT = '0' # TL in mm
+    LED = '00' # LED off
+    protocol = '010' # bin output
+    AGC = '0' # automatic gain control off
+    gain = '00' # 8dB - FUNCTION MUST BE IMPLEMENTED
+    SER2 = '0' # output on SER2 off
+    SER1 = '1' # output on SER1 on
+    dataFrames = '00000001' # only RAW data on
+    SLF = '1' # standard mode
+    PRE = '0' # standard mode
+    command = selfTrigDelay + res + LOG + FMT + LED + res + res + res + res + protocol + AGC + gain + SER2 + SER1 + dataFrames + res + res + SLF + PRE
+    return '!S' + hexificator(command) + '\r\n'
+
 # ---------- SERIAL HANDLING ------------ #
 
-def findSerialDevice(hwID="pappappero"):
+""" def findSerialDevice(hwID="pappappero"):
     radarBoard = serial.tools.list_ports.grep(hwID)
     print(radarBoard.description) #debug purposes
     return radarBoard.device
+ """
