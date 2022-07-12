@@ -34,9 +34,9 @@ def bandwidthConfiguration(BW=1000):
 
 def selfTrigDelaySetting(delay=0):
     if isinstance(delay, int):
-        if delay <= 128 and delay >= 0:
+        if delay >= 0 and delay <= 128:
             if delay == 0:
-                return '000'
+                return '{0:03b}'.format(0)
             pow = math.log(delay,2)
             if (math.ceil(pow) != math.floor(pow)):
                 twoPow = math.floor(pow)
@@ -77,7 +77,7 @@ def systemConfiguration(gainLevel=0):
 # 2: 43dB
 # 3: 56dB
 
-def basebandConfiguration():
+def basebandConfiguration(nRamps=1,nSamples=32,downSampl=0):
     WIN = '0' # windowing off
     FIR = '0' # FIR filter off
     DC = '0' # DC cancellation off
@@ -87,11 +87,42 @@ def basebandConfiguration():
     CFAR_G = '00' # CFAR guard - disabled
     averageN = '00' # how many FFTs are averaged - disabled
     FFTsize = '000' # number of FFT points - disabled
-    downSampl = '000' # down sampling factor - needs to be implemented?
-    nRamps = '000' # number of ramps for each measurement - needs to be implemented?
-    nSamples = '000' # number of samples for each measurement - needs to be implemented?
+
+    if downSampl >= 0 and downSampl <= 64: # down sampling factor
+        if downSampl == 0:
+            downSamplCommand = '{0:03b}'.format(0)
+        else:
+            pow = math.log(downSampl,2)
+            if (math.ceil(pow) != math.floor(pow)):
+                downSamplCommand = '{0:03b}'.format(math.floor(pow) + 1)
+            else:
+                downSamplCommand = '{0:03b}'.format(int(pow) + 1)
+    else:
+        downSamplCommand = '{0:03b}'.format(0)
+        print("\nWarning: wrong downsampling factor. Set to 0.\n")
+
+    if nRamps >= 1 and nRamps <= 128: # number of ramps for each measurement
+        pow = math.log(nRamps,2)
+        if (math.ceil(pow) != math.floor(pow)):
+            nRampsCommand = '{0:03b}'.format(math.floor(pow))
+        else:
+            nRampsCommand = '{0:03b}'.format(int(pow))
+    else:
+        nRampsCommand = '{0:03b}'.format(0)
+        print("\nWarning: wrong number of ramps per measurement. Set to 1.\n")
+
+    if nSamples >= 32 and nSamples <= 2048: # number of samples for each measurement
+        pow = math.log(nSamples,2) - 5
+        if (math.ceil(pow) != math.floor(pow)):
+            nSamplesCommand = '{0:03b}'.format(math.floor(pow))
+        else:
+            nSamplesCommand = '{0:03b}'.format(int(pow))
+    else:
+        nSamplesCommand = '{0:03b}'.format(0)
+        print("\nWarning: wrong number of samples per measurement. Set to 32.\n")
+
     ADC_clkDiv = '000' # sampling frequency - needs to be implemented?
-    command = WIN + FIR + DC + CFAR + CFAR_T + CFAR_S + CFAR_G + averageN + FFTsize + downSampl + nRamps + nSamples + ADC_clkDiv
+    command = WIN + FIR + DC + CFAR + CFAR_T + CFAR_S + CFAR_G + averageN + FFTsize + downSamplCommand + nRampsCommand + nSamplesCommand + ADC_clkDiv
     return '!B' + hexificator(command) + '\r\n'
 
 # ---------- SHORT COMMANDS ------------ #
