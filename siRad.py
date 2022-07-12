@@ -66,6 +66,23 @@ def systemConfiguration():
     command = selfTrigDelay + res + LOG + FMT + LED + res + res + res + res + protocol + AGC + gain + SER2 + SER1 + dataFrames + res + res + SLF + PRE
     return '!S' + hexificator(command) + '\r\n'
 
+def basebandConfiguration():
+    WIN = '0' # windowing off
+    FIR = '0' # FIR filter off
+    DC = '0' # DC cancellation off
+    CFAR = '00' # CA-CFAR - disabled
+    CFAR_T = '0000' # CFAR threshold - disabled
+    CFAR_S = '0000' # CFAR size - disabled
+    CFAR_G = '00' # CFAR guard - disabled
+    averageN = '00' # how many FFTs are averaged - disabled
+    FFTsize = '000' # number of FFT points - disabled
+    downSampl = '000' # down sampling factor - needs to be implemented?
+    nRamps = '000' # number of ramps for each measurement - needs to be implemented?
+    nSamples = '000' # number of samples for each measurement - needs to be implemented?
+    ADC_clkDiv = '000' # sampling frequency - needs to be implemented?
+    command = WIN + FIR + DC + CFAR + CFAR_T + CFAR_S + CFAR_G + averageN + FFTsize + downSampl + nRamps + nSamples + ADC_clkDiv
+    return '!B' + hexificator(command) + '\r\n'
+
 # ---------- SERIAL HANDLING ------------ #
 
 """ def findSerialDevice(hwID="pappappero"):
