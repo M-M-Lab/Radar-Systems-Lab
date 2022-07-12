@@ -1,9 +1,7 @@
-#https://pypi.org/project/pyserial/
 from textwrap import wrap
-#import serial
 import math
 
-# ---------- COMMANDS FORMATTING ------------ #
+# ---------- AUXILIARY FUNCTIONS ------------ #
 
 # https://stackoverflow.com/a/21872007
 def twosComplement(val):
@@ -19,6 +17,8 @@ def hexificator(bits):
         return ''.join(hexStrings)
     else:
         raise TypeError("The input must be a string and it must contain a number of bits multiple of four.")
+
+# ---------- CONFIGURATION COMMANDS ------------ #
 
 def bandwidthConfiguration(BW=1000):
     if isinstance(BW, int):
@@ -83,10 +83,13 @@ def basebandConfiguration():
     command = WIN + FIR + DC + CFAR + CFAR_T + CFAR_S + CFAR_G + averageN + FFTsize + downSampl + nRamps + nSamples + ADC_clkDiv
     return '!B' + hexificator(command) + '\r\n'
 
-# ---------- SERIAL HANDLING ------------ #
+# ---------- SHORT COMMANDS ------------ #
 
-""" def findSerialDevice(hwID="pappappero"):
-    radarBoard = serial.tools.list_ports.grep(hwID)
-    print(radarBoard.description) #debug purposes
-    return radarBoard.device
- """
+def getError():
+    return '!E\r\n'
+
+def getSystemInfo():
+    return '!I\r\n'
+
+def getVersionInfo():
+    return '!V\r\n'
