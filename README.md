@@ -8,6 +8,7 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
  - [x] Set Self Trigger Delay
  - [x] Added system configuration handler
  - [x] Added baseband configuration handler
+ - [x] Added short commands
  - [ ] Other control functions
 
 > **Note**: a lot of settings of above functions are still hardcoded.
