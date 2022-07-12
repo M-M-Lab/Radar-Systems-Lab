@@ -49,7 +49,7 @@ def selfTrigDelaySetting(delay=0):
     else:
         raise TypeError("The input must be an integer.")
 
-def systemConfiguration():
+def systemConfiguration(gainLevel=0):
     selfTrigDelay = selfTrigDelaySetting()
     res = '0' # reserved
     LOG = '1' # linear magnitude
@@ -57,7 +57,11 @@ def systemConfiguration():
     LED = '00' # LED off
     protocol = '010' # bin output
     AGC = '0' # automatic gain control off
-    gain = '00' # 8dB - FUNCTION MUST BE IMPLEMENTED
+    if gainLevel >= 0 and gainLevel <= 3:
+        gain = '{0:02b}'.format(gainLevel) # gain - default 8dB
+    else:
+        gain = '00'
+        print("\nWarning: wrong gain level. Gain set to 8dB.\n")
     SER2 = '0' # output on SER2 off
     SER1 = '1' # output on SER1 on
     dataFrames = '00000001' # only RAW data on
@@ -65,6 +69,13 @@ def systemConfiguration():
     PRE = '0' # standard mode
     command = selfTrigDelay + res + LOG + FMT + LED + res + res + res + res + protocol + AGC + gain + SER2 + SER1 + dataFrames + res + res + SLF + PRE
     return '!S' + hexificator(command) + '\r\n'
+
+# ABOUT THE GAIN:
+# gainLevel
+# 0: 8dB
+# 1: 21dB
+# 2: 43dB
+# 3: 56dB
 
 def basebandConfiguration():
     WIN = '0' # windowing off
