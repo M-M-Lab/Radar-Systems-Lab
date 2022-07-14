@@ -36,5 +36,5 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 Giulio Meucci \
 Francesco Mancuso
 
-### Notes
-Markdown Badges: https://github.com/Ileriayo/markdown-badges
+## 
+> Written with [StackEdit](https://stackedit.io/), [ForTheBadge](https://forthebadge.com/) and [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
