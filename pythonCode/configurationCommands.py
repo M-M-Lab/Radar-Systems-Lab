@@ -13,7 +13,7 @@ def twosComplement(val):
 def hexificator(bits):
     if (isinstance(bits, str) and (len(bits) % 4) == 0):
         splittedString = wrap(bits, 4)
-        hexStrings = [hex(int(subString,2))[2:] for subString in splittedString]
+        hexStrings = [hex(int(subString,2)).upper()[2:] for subString in splittedString]
         return ''.join(hexStrings)
     else:
         raise TypeError("The input must be a string and it must contain a number of bits multiple of four.")
