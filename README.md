@@ -1,4 +1,7 @@
 # Laboratorio-SiliconRadar
+![Visual Studio Code](https://img.shields.io/badge/Visual%20Studio%20Code-0078d7.svg?style=for-the-badge&logo=visual-studio-code&logoColor=white) \
+![Python](https://img.shields.io/badge/python-3670A0?style=for-the-badge&logo=python&logoColor=ffdd54) ![Markdown](https://img.shields.io/badge/markdown-%23000000.svg?style=for-the-badge&logo=markdown&logoColor=white)
+
 Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 
 :fire: MATLAB implementation coming soon :fire:
@@ -31,3 +34,6 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 ## Authors
 Giulio Meucci \
 Francesco Mancuso
+
+# Notes
+Markdown Badges: https://github.com/Ileriayo/markdown-badges
