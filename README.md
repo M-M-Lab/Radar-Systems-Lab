@@ -1,6 +1,8 @@
 # Laboratorio-SiliconRadar
 Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 
+:fire: MATLAB implementation coming soon :fire:
+
 ## TO-DO-LIST
  - [x] Conversion from string of bit to string of hex to write the commands
  - [x] Set bandwidth
@@ -14,3 +16,7 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
  - [ ] Other control functions
 
 > **Note**: a lot of settings of above functions are still hardcoded.
+
+## Authors
+Giulio Meucci \
+Francesco Mancuso
