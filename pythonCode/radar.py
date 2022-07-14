@@ -32,7 +32,7 @@ class radar():
 
         #Baseband configuration
         command=basebandConfiguration(1,32,0)
-        self.currentBB=[1,32] #Ramps, samples
+        self.currentBB=[1,32] #Set default Ramps, samples
         self.comPort.write(command.encode())
 
         #PLL configuration
