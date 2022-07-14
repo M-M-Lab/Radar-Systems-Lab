@@ -18,8 +18,15 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 > **Note**: a lot of settings of above functions are still hardcoded.
 
 ## TO-DO-LIST - GUI
- - [ ]
- - [ ]
+ - [x] Create main, radar and processor module
+ - [x] Bandwidth, Gain, Samples and Ramps configuration 
+ - [ ] Improve code readability and add comments
+ - [ ] Add selector to switch between spectrum and RDMap
+ - [ ] Add processing options ( windowing selection, low-pass and high-pass filtering, peak detection ..)
+ - [ ] Finalize base radar settings
+ - [ ] Remove timer from GUI and trigger update using Queue signaling
+ - [ ] Add "max hold" function 
+ - [ ] Add grid to plot
 
 ## Authors
 Giulio Meucci \
