@@ -34,9 +34,18 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
  - [ ] Add "max hold" function 
  - [ ] Add grid to plot
 
+## conda usage - DRAFT
+```console
+
+thecodebuzz@DESKTOP-NUEMRRD:~$ sudo service redis-server restart
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+
+```
+
 ## Authors
 Giulio Meucci \
 Francesco Mancuso
 
 ## 
-> Written with [StackEdit](https://stackedit.io/), [ForTheBadge](https://forthebadge.com/) and [Markdown Badges](https://github.com/Ileriayo/markdown-badges)
+> Written with [StackEdit](https://stackedit.io/)
