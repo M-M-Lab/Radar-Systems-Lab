@@ -1,4 +1,5 @@
 from textwrap import wrap
+import numpy as np
 import math
 
 # ---------- AUXILIARY FUNCTIONS ------------ #
@@ -17,6 +18,12 @@ def hexificator(bits):
         return ''.join(hexStrings)
     else:
         raise TypeError("The input must be a string and it must contain a number of bits multiple of four.")
+
+# https://stackoverflow.com/questions/2566412/find-nearest-value-in-numpy-array
+def find_nearest(array, value):
+    array = np.asarray(array)
+    idx = (np.abs(array - value)).argmin()
+    return idx
 
 # ---------- CONFIGURATION COMMANDS ------------ #
 
@@ -77,7 +84,7 @@ def systemConfiguration(gainLevel=0):
 # 2: 43dB
 # 3: 56dB
 
-def basebandConfiguration(nRamps=1,nSamples=32,downSampl=0):
+def basebandConfiguration(nRamps=1,nSamples=32,clkDiv=14,downSampl=0):
     WIN = '0' # windowing off
     FIR = '0' # FIR filter off
     DC = '0' # DC cancellation off
@@ -121,7 +128,13 @@ def basebandConfiguration(nRamps=1,nSamples=32,downSampl=0):
         nSamplesCommand = '{0:03b}'.format(0)
         print("\nWarning: wrong number of samples per measurement. Set to 32.\n")
 
-    ADC_clkDiv = '000' # sampling frequency - needs to be implemented?
+    if clkDiv >= 14 and clkDiv <= 614: # sampling frequency 
+        clkDivIdx = find_nearest([14,15,17,20,32,74,194,614],clkDiv)
+        ADC_clkDiv = '{0:03b}'.format(clkDivIdx)
+    else:
+        ADC_clkDiv = '{0:03b}'.format(0)
+        print("\nWarning: wrong ADC Clock Divider. Set to 14 (max sampling frequency).\n")
+
     command = WIN + FIR + DC + CFAR + CFAR_T + CFAR_S + CFAR_G + averageN + FFTsize + downSamplCommand + nRampsCommand + nSamplesCommand + ADC_clkDiv
     return '!B' + hexificator(command) + '\r\n'
 
