@@ -1,4 +1,10 @@
 # Laboratorio-SiliconRadar
+[![made-for-VSCode](https://img.shields.io/badge/Made%20for-VSCode-1f425f.svg)](https://code.visualstudio.com/)
+[![made-with-python](https://img.shields.io/badge/Made%20with-Python-1f425f.svg)](https://www.python.org/)
+[![made-with-Markdown](https://img.shields.io/badge/Made%20with-Markdown-1f425f.svg)](http://commonmark.org)
+[![Generic badge](https://img.shields.io/badge/siRad%20Simple%20firmware-1.4.4-green.svg)](https://siliconradar.com/wp/)
+
+
 Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 
 :fire: MATLAB implementation coming soon :fire:
@@ -18,9 +24,28 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
 > **Note**: a lot of settings of above functions are still hardcoded.
 
 ## TO-DO-LIST - GUI
- - [ ]
- - [ ]
+ - [x] Create main, radar and processor module
+ - [x] Bandwidth, Gain, Samples and Ramps configuration 
+ - [ ] Improve code readability and add comments
+ - [ ] Add selector to switch between spectrum and RDMap
+ - [ ] Add processing options ( windowing selection, low-pass and high-pass filtering, peak detection ..)
+ - [ ] Finalize base radar settings
+ - [ ] Remove timer from GUI and trigger update using Queue signaling
+ - [ ] Add "max hold" function 
+ - [ ] Add grid to plot
+
+## conda usage - DRAFT
+```console
+
+thecodebuzz@DESKTOP-NUEMRRD:~$ sudo service redis-server restart
+Stopping redis-server: redis-server.
+Starting redis-server: redis-server.
+
+```
 
 ## Authors
 Giulio Meucci \
 Francesco Mancuso
+
+## 
+> Written with [StackEdit](https://stackedit.io/)
