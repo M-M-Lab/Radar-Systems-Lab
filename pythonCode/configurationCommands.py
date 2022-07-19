@@ -87,7 +87,7 @@ def systemConfiguration(gainLevel=0):
 def basebandConfiguration(nRamps=1,nSamples=32,clkDiv=14,downSampl=0):
     WIN = '0' # windowing off
     FIR = '0' # FIR filter off
-    DC = '0' # DC cancellation off
+    DC = '1' # DC cancellation off
     CFAR = '00' # CA-CFAR - disabled
     CFAR_T = '0000' # CFAR threshold - disabled
     CFAR_S = '0000' # CFAR size - disabled
