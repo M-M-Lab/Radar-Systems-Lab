@@ -1,6 +1,6 @@
 # MATLAB code description
 
-The two `.json` files contain some data acquired by using the Python GUI. Besides I and Q data, they contain the radar parameter used for the acquisition:
+The two `.json` files contain some data acquired by using the Python GUI. Besides I and Q data, they contain the radar parameter used for the acquisition, for example:
 ``` 
 { "Bandwidth": 6000,
    "SamplingFrequency": 2.571,
@@ -10,8 +10,8 @@ The two `.json` files contain some data acquired by using the Python GUI. Beside
    "Gain": 8, 
    "data": [...] 
  }
- ``` 
- **Bandwidth** and **SamplingFrequency** are MHz, **PRI** is measured in seconds and **Gain** is in dB.
+ ```
+ This acquisition used a bandwitdh of 6000MHz (or 6GHz), a sampling frequency of 2.571MHz, with 1 ramp per frame and 32 samples per frame. The Pulse Repetition Interval is equal to 0.01577 seconds, and the gain of the LNA is 8dB.
  
 `JSON.m` is a [JSON parser](https://it.mathworks.com/matlabcentral/fileexchange/42236-parse-json-text?s_tid=mwa_osa_a), used in `simpleDataRead.m` to properly read and parse the data acquired by the Python GUI. The function `simpleDataRead.m` takes as input the name of the data file and it returns a matrix containing the data and a structure with the radar parameters, for example:
 ```
