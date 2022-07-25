@@ -37,6 +37,7 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
  ## TO-DO-LIST - MATLAB implementation
  - [ ] 2D CFAR detector
  - [ ] MATLAB GUI?
+ - [ ] Update the README.md about the MATLAB code with the useful information regarding the data format of the .json files
 
 ## conda usage - DRAFT
 ```console
