@@ -15,7 +15,7 @@ The two `.json` files contain some data acquired by using the Python GUI. Beside
  
 `JSON.m` is a [JSON parser](https://it.mathworks.com/matlabcentral/fileexchange/42236-parse-json-text?s_tid=mwa_osa_a), used in `simpleDataRead.m` to properly read and parse the data acquired by the Python GUI. The function `simpleDataRead.m` takes as input the name of the data file and it returns a matrix containing the data and a structure with the radar parameters, for example:
 ```
-[radarPar,radarData] = simpleDataRead('giulioCammina.json)
+[radarPar,radarData] = simpleDataRead('giulioCammina.json')
 ```
 The matrix `radarData` will have a number of rows equal to the number of samples and a number of columns equal to the number of acquired frames (i.e., the range profiles ara arranged along the columns).
 
