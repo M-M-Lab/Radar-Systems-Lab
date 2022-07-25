@@ -33,6 +33,10 @@ Python library for [EVALKIT SiRad Simple®](https://siliconradar.com/evalkits/).
  - [ ] Remove timer from GUI and trigger update using Queue signaling
  - [ ] Add "max hold" function 
  - [ ] Add grid to plot
+ 
+ ## TO-DO-LIST - MATLAB implementation
+ - [ ] 2D CFAR detector
+ - [ ] MATLAB GUI?
 
 ## conda usage - DRAFT
 ```console
