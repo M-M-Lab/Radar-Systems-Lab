@@ -21,6 +21,10 @@ The matrix `radarData` will have a number of rows equal to the number of samples
 
 ##
 The script `RDmap_TestDataRead.m` does an high pass filtering on the data, by using a simple 3-pulse canceller along range profiles, followed by a windowing, by using an Hamming window, and plots the Range-Doppler map using a sliding window that goes through the acquired frames, providing a sort of live Range-Doppler map. The dimension of the sliding window can be adjusted.
+
+##
+The script `CFAR_detector.m` does the same preprocessing of `RDmap_TestDataRead.m` to obtain the Range-Doppler Map. After that, it performs the CFAR detection by using the dedicated MATLAB routine and it evaluates the centroid of the target to give an estimate of the position.
+
  
  ## References
   - Joe Hicklin (2022). Parse JSON text (https://www.mathworks.com/matlabcentral/fileexchange/42236-parse-json-text), MATLAB Central File Exchange. Retrieved July 25, 2022.
