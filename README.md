@@ -40,6 +40,7 @@ This code has been wrote for laboratory's activities during the **Radar Systems*
  - [ ] MATLAB GUI?
  - [x] Update the README.md about the MATLAB code with the useful information regarding the data format of the .json files
 
+<!---
 ## conda usage - DRAFT
 ```console
 
@@ -48,6 +49,7 @@ Stopping redis-server: redis-server.
 Starting redis-server: redis-server.
 
 ```
+--->
 
 ## Authors
 Giulio Meucci \
