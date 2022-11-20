@@ -53,4 +53,4 @@ Starting redis-server: redis-server.
 
 ## Authors
 Giulio Meucci \
-Francesco Mancuso
+[Francesco Mancuso](https://mandugo.github.io)
