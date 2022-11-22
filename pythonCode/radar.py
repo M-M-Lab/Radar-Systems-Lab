@@ -4,12 +4,7 @@ import serial.tools.list_ports as list_SrlPorts
 from configurationCommands import *
 import numpy as np
 import time
-
-def findSerialDevice():
-    radarBoard = list_SrlPorts.comports()
-    for rb in radarBoard:
-        if '/dev/tty' in rb.device:
-            return rb.device
+from connectionHandler import findSerialDevice
 
 
 class radar():
