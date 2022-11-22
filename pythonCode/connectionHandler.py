@@ -1,8 +1,9 @@
 #https://pypi.org/project/pyserial/
 
-import serial
+from serial.tools import list_ports
 
-def findSerialDevice(hwID="CP2102"):
-    radarBoard = serial.tools.list_ports.grep(hwID)
-    print(radarBoard.description) #debug purposes
-    return radarBoard.device
+def findSerialDevice(vid=6790):
+    devices = list_ports.comports()
+    for serObj in devices:
+        if serObj.vid == vid: return serObj.device
+    
