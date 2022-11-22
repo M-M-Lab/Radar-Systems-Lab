@@ -62,7 +62,7 @@ def systemConfiguration(gainLevel=0):
     LOG = '1' # linear magnitude
     FMT = '0' # TL in mm
     LED = '00' # LED off
-    protocol = '001' # TSV output
+    protocol = '010' # TSV output
     AGC = '0' # automatic gain control off
     if gainLevel >= 0 and gainLevel <= 3:
         gain = '{0:02b}'.format(gainLevel) # gain - default 8dB
