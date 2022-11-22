@@ -5,7 +5,7 @@ import numpy as np
 from queue import Empty
 from PySide2 import QtCore
 from PySide2.QtWidgets import QMainWindow, QApplication
-from MainWindow import Ui_MainWindow
+from pythonCode.WindowDefinition import Ui_MainWindow
 import pyqtgraph as pg
 
 class mainWindow(QMainWindow):
