@@ -1,8 +1,6 @@
 #https://pypi.org/project/pyserial/
 from serial import Serial,EIGHTBITS,PARITY_NONE,STOPBITS_ONE
-import serial.tools.list_ports as list_SrlPorts
 from configurationCommands import *
-import numpy as np
 import time
 from connectionHandler import findSerialDevice
 
@@ -47,16 +45,11 @@ class radar():
                     buf=self.comPort.read_until(expected=b'\r\n')
                     writtenBytes+=len(buf)
                 tStamp=time.time()
-                #print(writtenBytes,writtenBytes*8/1e3)
-                #print(buf[:10])
-                #print(buf[5:6],int.from_bytes(buf[5:6],"big"))
-                #print(buf[7:8], int.from_bytes(buf[7:8],"big"))
-                
-                #print(int.from_bytes(buf,"big",signed=True))
+
                 self.dataQ.put((buf,tStamp))
                 if self.controlQ.qsize():
                     self.updateParams()
-                #print('radar Q', self.dataQ.qsize())
+                #print('radar Q', self.dataQ.qsize()) #Debug, mostra la lunghezza della coda tra qui e il processore
 
         except KeyboardInterrupt:
             print('Closing com port.')

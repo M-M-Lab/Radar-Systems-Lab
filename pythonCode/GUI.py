@@ -5,7 +5,7 @@ import numpy as np
 from queue import Empty
 from PySide2 import QtCore
 from PySide2.QtWidgets import QMainWindow, QApplication
-from pythonCode.WindowDefinition import Ui_MainWindow
+from WindowDefinition import Ui_MainWindow
 import pyqtgraph as pg
 
 class mainWindow(QMainWindow):
@@ -56,7 +56,7 @@ class mainWindow(QMainWindow):
         #Radar params
         self.FS=2.571
         self.Ramps=1
-        self.bandwidth=3000
+        self.bandwidth=6000
         self.PRI=0.015
         self.gain=8
         
