@@ -2,6 +2,7 @@ import numpy as np
 import time
 import struct
 import json
+import array
 
 def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
 
@@ -53,12 +54,16 @@ def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
         startTime=time.time()
         for ind in range(NSweepIntegration):
             buf,tStamp=radar2processor_dataQ.get()
-            if len(buf[9:-2])>=2*buffSize:    
-                buf=struct.iter_unpack('<h',buf[9:-2])
-                buf=[val[0] for val in buf]
-                dataI=np.array(buf[0:2*buffSize:2])
-                dataQ=np.array(buf[1:2*buffSize:2])
-                complexData=dataI+1j*dataQ
+            #buffSize=int(int.from_bytes(buf[7:8],"big")/2)
+            if len(buf[9:-2])>=2*buffSize:
+                #New  TOTEST
+                short_array = np.array(array.array('h', buf[9:-2]))
+                complexData=short_array[::2]+1j*short_array[1::2]  
+                #buf=struct.iter_unpack('<h',buf[9:-2])
+                #buf=[val[0] for val in buf]
+                #dataI=np.array(buf[0:2*buffSize:2])
+                #dataQ=np.array(buf[1:2*buffSize:2])
+                #complexData=dataI+1j*dataQ
                 if dump2File:
                     listOfFrame.append(buf)
                     listOfTStamp.append(tStamp)
