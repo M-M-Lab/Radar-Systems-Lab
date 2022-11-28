@@ -54,3 +54,16 @@ Starting redis-server: redis-server.
 ## Authors
 Giulio Meucci \
 [Francesco Mancuso](https://mandugo.github.io)
+
+## Citation
+```
+@software{RSL22,
+  author = {Mancuso, Francesco and Meucci, Giulio},
+  doi = {},
+  month = {11},
+  title = {{Radar System Laboratory}},
+  url = {https://github.com/M-M-Lab/Radar-Systems-Lab},
+  version = {1.0},
+  year = {2022}
+}
+```
