@@ -51,6 +51,7 @@ Starting redis-server: redis-server.
 ```
 --->
 ## Citation
+If you use this software, please cite it as below.
 ```
 @software{Mancuso_Radar_System_Laboratory_2022,
  author = {Mancuso, Francesco and Meucci, Giulio},
