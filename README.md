@@ -57,13 +57,12 @@ Giulio Meucci \
 
 ## Citation
 ```
-@software{RSL22,
-  author = {Mancuso, Francesco and Meucci, Giulio},
-  doi = {},
-  month = {11},
-  title = {{Radar System Laboratory}},
-  url = {https://github.com/M-M-Lab/Radar-Systems-Lab},
-  version = {1.0},
-  year = {2022}
+@software{Mancuso_Radar_System_Laboratory_2022,
+author = {Mancuso, Francesco and Meucci, Giulio},
+doi = {10.5281/zenodo.1234},
+month = {11},
+title = {{Radar System Laboratory}},
+version = {1.0.0},
+year = {2022}
 }
 ```
