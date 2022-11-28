@@ -7,6 +7,9 @@ Usage: `[alfaGO,alfaSO] = alfasCalc(N,pFA)`, where *N* is the size of the refere
 
 The live scripts are described in the slideshow.
 
+> **Warning**\
+> If the reference window of the CFAR is too big, the MATLAB method `nchoosek()` - within the function `alfasCalc.m` - may fail.
+
 ## References
 **[1]** James A. Scheer, James L. Kurtz (editors). “Coherent Radar Performance Estimation”. Boston: Artech House (1993), ISBN 0-89006-628-0.\
 **[2]** Richards, M.A. and Scheer, J.A. and Scheer, J. and Holm, W.A. "Principles of Modern Radar: Basic Principles, Volume 1". Institution of Engineering and Technology (2010), ISBN 9781891121524
