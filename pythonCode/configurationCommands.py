@@ -1,4 +1,4 @@
-from textwrap import wrap
+#from textwrap import wrap
 import numpy as np
 import math
 
@@ -13,7 +13,7 @@ def twosComplement(val):
 
 def hexificator(bits):
     if (isinstance(bits, str) and (len(bits) % 4) == 0):
-        splittedString = wrap(bits, 4)
+        splittedString = map(''.join, zip(*[iter(bits)]*4)) #wrap(bits, 4)
         hexStrings = [hex(int(subString,2)).upper()[2:] for subString in splittedString]
         return ''.join(hexStrings)
     else:
