@@ -1,8 +1,6 @@
 # First Radar System Laboratory Lesson - 29/11/2022
 ### A.A. 2022/2023
 
-- The folder `/data` contains a couple of `.mat` files used for the live scripts;
-
 The live scripts are described in the slideshow.
 
 ## References
