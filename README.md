@@ -10,6 +10,8 @@ This code has been wrote for laboratory's activities during the **Radar Systems*
 
 ~~:fire: MATLAB implementation coming soon :fire:~~
 
+> Link for configuration calculator: http://rustafun.pythonanywhere.com/ - it is not needed if the Python GUI is used.
+
 ## TO-DO-LIST - Radar Board commands and control
  - [x] Conversion from string of bit to string of hex to write the commands
  - [x] Set bandwidth
