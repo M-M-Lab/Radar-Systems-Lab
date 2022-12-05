@@ -40,16 +40,14 @@ This code has been wrote for laboratory's activities during the **Radar Systems*
  - [ ] MATLAB GUI?
  - [x] Update the README.md about the MATLAB code with the useful information regarding the data format of the .json files
 
-<!---
-## conda usage - DRAFT
+
+## Anaconda usage
 ```console
 
-thecodebuzz@DESKTOP-NUEMRRD:~$ sudo service redis-server restart
-Stopping redis-server: redis-server.
-Starting redis-server: redis-server.
+lab-radar@labradar-Precision-T1500:~$ conda env create -f SiliconRadar_Env.yml
 
 ```
---->
+
 ## Citation
 If you use this software, please cite it as below.
 ```
