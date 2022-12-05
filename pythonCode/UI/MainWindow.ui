@@ -111,7 +111,7 @@
          <number>2</number>
         </property>
         <property name="value">
-         <number>3000</number>
+         <number>6000</number>
         </property>
        </widget>
       </item>
@@ -195,7 +195,7 @@
       <item row="8" column="0">
        <widget class="QLabel" name="PRILabel">
         <property name="text">
-         <string>PR [ms]I:</string>
+         <string>PRI [ms]:</string>
         </property>
        </widget>
       </item>
@@ -236,6 +236,9 @@
           <horstretch>0</horstretch>
           <verstretch>0</verstretch>
          </sizepolicy>
+        </property>
+        <property name="currentText">
+         <string>2048</string>
         </property>
         <item>
          <property name="text">
