@@ -37,8 +37,8 @@ class radar():
     def run(self):
         try:
             while True:
-                self.comPort.write(str.encode('!N\r\n'))
-                self.comPort.flush()
+                #self.comPort.write(str.encode('!N\r\n'))
+                #self.comPort.flush()
                 buf=b''
                 writtenBytes=0
                 while not buf.startswith(b'\xaa\xaa\xbb\xccM'):
@@ -70,6 +70,7 @@ class radar():
         elif key=='Samps':
             self.currentBB[1]=value
             command=basebandConfiguration(self.currentBB[0],self.currentBB[1],self.currentBB[2],self.currentBB[3])
+            print(command)
             self.comPort.write(command.encode())
         elif key=='FS':
             self.currentBB[2]=value
