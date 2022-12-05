@@ -2,6 +2,7 @@ import numpy as np
 import time
 import struct
 import json
+import scipy
 import array
 
 def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
@@ -31,12 +32,13 @@ def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
                     #Create name for dump file with timestamp
                     date=time.asctime()
                     date=date.replace(' ','_')
-                    fileName='../dump/dump_'+date.replace(':','')+'.json'
+                    fileName='../dump/dump_'+date.replace(':','')+'.mat'
                 else:       #Dump to file
                     f = open(fileName, 'a')
                     dataDict['data']=listOfFrame
                     dataDict['tStamp']=listOfTStamp
-                    json.dump(dataDict,f)
+                    scipy.io.savemat(fileName,{'data': dataDict})                    
+                    #json.dump(dataDict,f)
                     f.close()
                     dump2File=False
 
@@ -51,24 +53,27 @@ def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
 
         RDMap=np.zeros((int(buffSize),NSweepIntegration),dtype=np.complex)  #Maybe useless!!!
 
-        startTime=time.time()
+        #startTime=time.time()
+        tStamp=np.zeros((NSweepIntegration,1))
         for ind in range(NSweepIntegration):
-            buf,tStamp=radar2processor_dataQ.get()
+            buf,tStamp[ind]=radar2processor_dataQ.get()
             #buffSize=int(int.from_bytes(buf[7:8],"big")/2)
-            if len(buf[9:-2])>=2*buffSize:
+            try: #if len(buf[9:-2])>=2*buffSize:
                 #New  TOTEST
                 short_array = np.array(array.array('h', buf[9:-2]))
-                complexData=short_array[::2]+1j*short_array[1::2]  
+                complexData=short_array[:2*buffSize:2]+1j*short_array[1:2*buffSize:2]  
                 #buf=struct.iter_unpack('<h',buf[9:-2])
                 #buf=[val[0] for val in buf]
                 #dataI=np.array(buf[0:2*buffSize:2])
                 #dataQ=np.array(buf[1:2*buffSize:2])
                 #complexData=dataI+1j*dataQ
                 if dump2File:
-                    listOfFrame.append(buf)
-                    listOfTStamp.append(tStamp)
-            RDMap[:,ind]=complexData
-        PRI=(time.time()-startTime)/NSweepIntegration
+                    listOfFrame.append(complexData.tolist())
+                    listOfTStamp.append(tStamp[ind])
+                RDMap[:,ind]=complexData
+            except:
+                pass
+        PRI=np.mean(np.diff(tStamp,1,0))
         
         #Hamming
         RDMap=RDMap*hamming
@@ -79,8 +84,10 @@ def process(radar2processor_dataQ,processor2GUI_dataQ,GUI2processor_controlQ):
         
         #Cut RDMap in half
         C=C[int(buffSize):,:]
-        C[C == 0] = np.min(C[C != 0]) #MODIFIED -> = 1 [rimuove gli zeri per evitare problemi con la np.log10(.)]
-        C=np.log10(np.abs(C))
-        
+        try:
+            C[C == 0] = np.min(C[C != 0]) #MODIFIED -> = 1 [rimuove gli zeri per evitare problemi con la np.log10(.)]
+            C=np.log10(np.abs(C))
+        except:
+            pass
         #print('Proc Q', processor2GUI_dataQ.qsize()) #Debug, mostra la lunghezza della coda tra processore e interfaccia grafica
         processor2GUI_dataQ.put((C,PRI))
