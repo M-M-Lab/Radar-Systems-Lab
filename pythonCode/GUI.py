@@ -74,6 +74,7 @@ class mainWindow(QMainWindow):
             return
         
         self.win.PRIValue.setText("{0:.2f}".format(self.PRI*1e3))
+        self.rescaleAxis()
         lev=self.bar.levels()
         self.imageItem.setImage(RDMap.T)
         self.bar.setLevels([1,np.max(RDMap)])
