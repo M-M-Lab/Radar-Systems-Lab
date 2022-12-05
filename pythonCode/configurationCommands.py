@@ -72,7 +72,7 @@ def systemConfiguration(gainLevel=0):
     SER2 = '0' # output on SER2 off
     SER1 = '1' # output on SER1 on
     dataFrames = '00000001' # only RAW data on
-    SLF = '1' # standard mode
+    SLF = '1' # standard mode 0-external 1-internal
     PRE = '0' # standard mode
     command = selfTrigDelay + res + LOG + FMT + LED + res + res + res + res + protocol + AGC + gain + SER2 + SER1 + dataFrames + res + res + SLF + PRE
     return '!S' + hexificator(command) + '\r\n'
