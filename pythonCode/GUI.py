@@ -132,7 +132,6 @@ class mainWindow(QMainWindow):
                 'SamplingFrequency':self.FS,
                 'Ramps':self.Ramps,
                 'Samps':self.Samps,
-                'PRI':"{0:.5f}".format(self.PRI),
                 'Gain':self.gain
                 }
             self.processorControlQ.put(('Dump',value))
