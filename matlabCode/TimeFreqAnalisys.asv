@@ -4,79 +4,89 @@ clc
 
 %% Setting dei parametri
 zp = 4;
+
 windowSize = 128;
 
+blindCells=64;
 
+f0=122e9;
+
+omega=2*pi/75;  %Velocità angolare del tavolo rotante
+
+c=3e8;
+
+%% Inizializzazione
 
 load('rotante120.mat')
 
 radarData=data.data(3:end,:).';
 
-PRI=max(diff(data.tStamp));
-
-
 nPlots = size(radarData,2)-windowSize;
+
+PRF=1/max(diff(data.tStamp));
+
+lambda=c/f0;
 
 Hn = hamming(data.Samps);
 
 windowedData=radarData.*Hn;
 
-%% Filters
-%filteredData = filter(HP_filter,1,radarData,[],1);
-%filteredData=highpass(radarData.*ham2D,0.35,'Steepness',0.9);
-%filteredData=bandpass(radarData.*ham2D,[0.5,0.95]);
+%% Filtri
 
-%filteredData=highpass(filteredData.',0.05,'Steepness',0.9).';
+%filteredData = filter([1 -1],1,windowedData,[],1);
+%filteredData=highpass(windowedData,0.35,'Steepness',0.9);
+%filteredData=bandpass(windowedData,[0.5,0.95]);
+%filteredData=highpass(windowedData.',0.05,'Steepness',0.9).';
+filteredData=windowedData;
 
-% -----------------------
+%% Costruzione dello spettrogramma
 
-lambda = 0.25; %2.5 mm, 0.25 cm
-f0=1/PRI;
-maxRange = ((data.Samps + 37.5)*3e8)/(4*data.Bandwidth*1e6);
-maxVel = lambda/(4*str2num(data.PRI));
+SPgram=zeros(zp*windowSize,nPlots);
 
-rangeVec = 0:maxRange/(zp*data.Samps/2):maxRange - maxRange/(zp*data.Samps);
-velVec = -maxVel:2*maxVel/(zp*windowSize):maxVel - maxVel/(zp*windowSize);
-[V,R] = meshgrid(velVec,rangeVec);
-
-timeSeries=zeros(2,nPlots);
-
-microDopplerStrip=zeros(zp*windowSize,nPlots);
-
-FFTdataFiltered=fft(filteredData,zp*data.Samps);
+rangeProfiles=fft(filteredData,zp*data.Samps);
 
 for index = 1:nPlots
-    dataWindowed = FFTdataFiltered(:,index:index+windowSize-1);
 
-    RDmap=fft(dataWindowed,zp*windowSize,2);
+    winRangeProfiles = rangeProfiles(:,index:index+windowSize-1);
+
+    RDmap=fft(winRangeProfiles,zp*windowSize,2);
+
     RDmap = fftshift(RDmap,2);
-    RDmap=RDmap(32:end/2,:);
-    strip=mean(abs(RDmap),1);
-%     [M,i]=max(abs(RDmap),[],'all');
-%     [I,J]=ind2sub(size(RDmap),i);
-%     strip=abs(RDmap(I,:));%mean(abs(RDmap),1);
 
-    microDopplerStrip(:,index)=strip./max(strip,[],'all');
+    RDmap=RDmap(blindCells:end/2,:);
+
+    strip=max(abs(RDmap),[],1);
+
+    SPgram(:,index)=strip./max(strip,[],'all');
 
 end
 
+% maxRange = ((data.Samps + 37.5)*3e8)/(4*data.Bandwidth*1e6);
+% maxVel = lambda/(4*PRI);
+% 
+% rangeVec = 0:maxRange/(zp*data.Samps/2):maxRange - maxRange/(zp*data.Samps);
+% velVec = -maxVel:2*maxVel/(zp*windowSize):maxVel - maxVel/(zp*windowSize);
+% [V,R] = meshgrid(velVec,rangeVec);
+
+
+fd=linspace(-PRF/2,PRF/2,size(RDmap,2));
+tVect=linspace(0,size(SPgram,2)/PRF,size(SPgram,2));
 
 figure(1)
-imagesc([],velVec,log10(abs(microDopplerStrip)))
+imagesc(tVect,fd,log10(abs(SPgram)))
 colorbar
-clim([-1.5 0])
+xlabel('Time [s]')
+clim([-0.5 0])
 
 
 
-omega=2*pi/75;
-angoli=linspace(0,360,size(microDopplerStrip,2));
-iRad=abs(iradon(microDopplerStrip,angoli,size(RDmap,2)));
-f=linspace(-1/(2*str2num(data.PRI)),1/(2*str2num(data.PRI)),size(RDmap,2));
 
-lambda=3e10/120e9;
-xVect=f*lambda/(2*omega);
+angoli=linspace(0,360,size(SPgram,2));
+iRad=abs(iradon(SPgram,angoli,size(RDmap,2)));
 
-yVect=f*lambda/(2*omega);
+xVect=fd*lambda/(2*omega);
+
+yVect=fd*lambda/(2*omega);
 figure(3)
 imagesc(xVect,yVect,iRad)
 colorbar
