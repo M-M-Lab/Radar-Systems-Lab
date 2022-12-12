@@ -70,7 +70,6 @@ class radar():
         elif key=='Samps':
             self.currentBB[1]=value
             command=basebandConfiguration(self.currentBB[0],self.currentBB[1],self.currentBB[2],self.currentBB[3])
-            print(command)
             self.comPort.write(command.encode())
         elif key=='FS':
             self.currentBB[2]=value
