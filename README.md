@@ -51,9 +51,9 @@ lab-radar@labradar-Precision-T1500:~$ conda env create -f SiliconRadar_Env.yml
 ```
 
 ## Citation
-If you use this software, please cite it as below.
+Please cite it as below.
 ```
-@software{Mancuso_Radar_System_Laboratory_2022,
+@software{Radar_System_Laboratory_2022,
  author = {Mancuso, Francesco and Meucci, Giulio},
  month = {11},
  title = {{Radar System Laboratory}},
